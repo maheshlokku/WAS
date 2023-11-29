@@ -1,0 +1,64 @@
+                         JDBC IN  WAS
+In Resources – JDBC-JDBC providers 
+
+1.select the target node 
+2.And create a new Jdbc provider by seletcting the credentials like
+   1.Data Base Type -(oracle 0r Db2 ....)
+   2.Provider type-Db2 Universal Jdbc driver provider.
+   3.Implementation Type-Connection pool data source
+   4.1.give the path of db2jcc.jar(from db2 user to Was user db2jcc.jar file path)
+      2.Native path as opt/ibm/db2/V11.1 or V10.5(default path)
+   5.synchronize the changes.
+   6.Finally you get a created DB2 Universal JDBC Driver Provider .
+
+Later In Data Sources
+ 
+1.select the target node 
+2.Enter a Basic Data Source Information like
+  1.Data Source Name and JNDI  name
+  2.Select JDBC provider  that is Db2 Universal Jdbc driver provider.
+  3.Enter database specific properties for the data source 
+      1.Driver Type-4 or 2
+      2.Data base Name-db2Inst1
+      3.Server Name that is Ip here(db2 Ip)
+      4.Port Number-50000(default)
+   4.Setup security aliases 
+          For this Go To Securty-Global Security
+1. Java Authentication and Authorisation Service- J2 authentication Data-Click on New and give Credentials Like
+    (Alias,User ID-db2Inst1 ,Password)
+2.A Target link will be created here.
+3.And Select Above Target link in Setup security aliases In DataSources In 
+Component Managment authentication alias.
+4.And in Data Source test the Connection.
+
+Note:-
+oracle-/u01/app/oracle/product/19.0.0/dbhome_1/jdbc/lib/ojdbc8.jar
+db2-/opt/ibm/db2/V11.1/java/db2jcc.jar
+
+           
+     JMS CONFIGURATION IN WAS
+
+In Service Integration-Buses
+ 1.Create New Bus
+ 2.select the created Bus and synchronise it.
+ 3.Later Inside created Bus Link add a Member in Bus Members.
+          4.select Server With Node which we Created-Filestore-Configure file store -Tune performance parameters.
+          5.select the target link and synchronise it.
+  
+     In Resources-Queue Connection Factories
+ 1.select the target node 
+ 2.New-Select JMS resource provider as Default messaging provider
+ 3.Give credentials like
+     1.In administration -Name,JNDI Name
+     2.In connection-Bus Name and  synchronise it.
+      Later In  Resources-Queues 
+          1.select the target node 
+          2.Give credentials like
+     1.In administration -Name,JNDI Name
+             2.In connection-Bus Name,Queue Name and  synchronise it.
+    And deploy a application with ip or hostname,port and context root.
+    Send the message in application and we can check the store message in
+    Note:-Service Integration-Buses-Target Bus Link-Destinations-Queue type link-Queue points- Queue depth Link-Run time-Messages-ID-Message body.
+
+           
+                    
